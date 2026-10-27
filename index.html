@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>10 Unusual Halloween Traditions around the World – Destination Tips</title>
+  <link rel="icon" type="image/png" sizes="48x48" href="favicon.png">
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #1e293b;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --correct: #22c55e;
+      --incorrect: #ef4444;
+      --border: #334155;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 24px 16px 60px;
+    }
+
+    .container { max-width: 860px; margin: 0 auto; }
+
+    h1 {
+      font-size: 1.55rem;
+      margin-bottom: 6px;
+      color: #f8fafc;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      margin-bottom: 20px;
+      font-size: 1.05rem;
+    }
+
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 12px;
+      margin-bottom: 12px;
+      background: #000;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: 0;
+    }
+
+    .video-fallback {
+      text-align: center;
+      margin: 0 0 24px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .video-fallback a { color: var(--accent); }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 28px;
+    }
+
+    .nav button {
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 10px 18px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .nav button:hover { border-color: var(--accent); color: var(--accent); }
+
+    .nav button.active {
+      background: var(--accent);
+      color: #0f172a;
+      border-color: var(--accent);
+    }
+
+    .page { display: none; }
+    .page.active { display: block; }
+
+    .instructions {
+      color: var(--muted);
+      margin-bottom: 22px;
+      font-size: 1.02rem;
+    }
+
+    .question {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin-bottom: 16px;
+    }
+
+    .question h3 {
+      font-size: 1.05rem;
+      margin-bottom: 12px;
+      color: #f1f5f9;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .option {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 11px 13px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: #0f172a;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+      user-select: none;
+    }
+
+    .option:hover { border-color: var(--accent); background: #1e293b; }
+
+    .option input[type="radio"] {
+      margin-top: 3px;
+      accent-color: var(--accent);
+      width: 17px; height: 17px;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .option span { flex: 1; }
+
+    .option.correct {
+      background: rgba(34, 197, 94, 0.18);
+      border-color: var(--correct);
+      color: #bbf7d0;
+    }
+
+    .option.incorrect {
+      background: rgba(239, 68, 68, 0.18);
+      border-color: var(--incorrect);
+      color: #fecaca;
+    }
+
+    /* Vocabulary */
+    .vocab-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .vocab-item .ru {
+      color: #f1f5f9;
+      font-size: 1.02rem;
+    }
+
+    .vocab-item input[type="text"] {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: #0f172a;
+      color: var(--text);
+      font-size: 1rem;
+    }
+
+    .vocab-item input[type="text"]:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .vocab-item.correct input {
+      border-color: var(--correct);
+      background: rgba(34, 197, 94, 0.12);
+    }
+
+    .vocab-item.incorrect input {
+      border-color: var(--incorrect);
+      background: rgba(239, 68, 68, 0.12);
+    }
+
+    .feedback {
+      font-size: 0.9rem;
+      margin-top: 4px;
+    }
+
+    .feedback.correct { color: var(--correct); }
+    .feedback.incorrect { color: var(--incorrect); }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 28px 0 16px;
+      align-items: center;
+    }
+
+    button.primary {
+      background: var(--accent);
+      color: #0f172a;
+      border: none;
+      padding: 12px 22px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button.primary:hover { opacity: 0.9; }
+
+    button.secondary {
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 12px 22px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    #score1, #score2 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #f8fafc;
+      margin-left: 8px;
+    }
+
+    .reflection-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 22px;
+    }
+
+    .reflection-box p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    .reflection-box p:last-child { margin-bottom: 0; }
+
+    .footer-note {
+      margin-top: 28px;
+      font-size: 0.9rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.show { display: flex; }
+
+    .modal {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 28px;
+      max-width: 380px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    }
+
+    .modal .score-big {
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: #f8fafc;
+      margin-bottom: 8px;
+    }
+
+    .modal .message {
+      font-size: 1.25rem;
+      color: var(--text);
+      margin-bottom: 24px;
+      line-height: 1.4;
+    }
+
+    .modal button {
+      background: var(--accent);
+      color: #0f172a;
+      border: none;
+      padding: 12px 28px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .modal button:hover { opacity: 0.9; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>10 Unusual Halloween Traditions around the World</h1>
+    <p class="subtitle">by Destination Tips</p>
+
+    <div class="video-wrapper">
+      <iframe
+        src="https://www.youtube.com/embed/YXfx88SKkpQ?rel=0"
+        title="10 Unusual Halloween Traditions around the World – Destination Tips"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen>
+      </iframe>
+    </div>
+    <p class="video-fallback">
+      If the video appears as a black square,
+      <a href="https://youtu.be/YXfx88SKkpQ" target="_blank" rel="noopener">watch it directly on YouTube here</a>.
+    </p>
+
+    <div class="nav">
+      <button class="active" data-page="1">Listening comprehension</button>
+      <button data-page="2">Vocabulary</button>
+      <button data-page="3">Reflection</button>
+    </div>
+
+    <!-- PAGE 1: Listening -->
+    <div class="page active" id="page1">
+      <p class="instructions">Watch the video and choose the correct answer in each case.</p>
+
+      <form id="form1">
+        <div class="question" data-correct="B">
+          <h3>1. What is the main purpose of Mexico's Day of the Dead celebration?</h3>
+          <div class="options">
+            <label class="option"><input type="radio" name="q1" value="A"> <span>A) To scare away evil spirits with costumes.</span></label>
+            <label class="option"><input type="radio" name="q1" value="B"> <span>B) To remember deceased loved ones and pay them respect.</span></label>
+            <label class="option"><input type="radio" name="q1" value="C"> <span>C) To predict people's futures.</span></label>
+            <label class="option"><input type="radio" name="q1" value="D"> <span>D) To celebrate the beginning of autumn.</span></label>
+          </div>
+        </div>
+
+        <div class="question" data-correct="A">
+          <h3>2. What do people in Austria traditionally leave out on Halloween night?</h3>
+          <div class="options">
+            <label class="option"><input type="radio" name="q2" value="A"> <span>A) Bread, water and a lantern.</span></label>
+            <label class="option"><input type="radio" name="q2" value="B"> <span>B) Fruit, candles and flowers.</span></label>
+            <label class="option"><input type="radio" name="q2" value="C"> <span>C) Sweets, pumpkins and drinks.</span></label>
+            <label class="option"><input type="radio" name="q2" value="D"> <span>D) Bread, coins and flowers.</span></label>
+          </div>
+        </div>
+
+        <div class="question" data-correct="C">
+          <h3>3. What do people in the Czech Republic do to welcome the deceased during their autumn celebration?</h3>
+          <div class="options">
+            <label class="option"><input type="radio" name="q3" value="A"> <span>A) They visit churches and hide kitchen knives.</span></label>
+            <label class="option"><input type="radio" name="q3" value="B"> <span>B) They carve turnips and exchange gifts.</span></label>
+            <label class="option"><input type="radio" name="q3" value="C"> <span>C) They set out chairs for the deceased around a bonfire.</span></label>
+            <label class="option"><input type="radio" name="q3" value="D"> <span>D) They prepare special bread for their ancestors.</span></label>
+          </div>
+        </div>
+
+        <div class="question" data-correct="D">
+          <h3>4. When does China's Festival of Hungry Ghosts take place?</h3>
+          <div class="options">
+            <label class="option"><input type="radio" name="q4" value="A"> <span>A) At the end of October.</span></label>
+            <label class="option"><input type="radio" name="q4" value="B"> <span>B) In early November.</span></label>
+            <label class="option"><input type="radio" name="q4" value="C"> <span>C) In December.</span></label>
+            <label class="option"><input type="radio" name="q4" value="D"> <span>D) In August.</span></label>
+          </div>
+        </div>
+
+        <div class="question" data-correct="B">
+          <h3>5. Why do some Catholic communities in Germany hide their kitchen knives during the All Saints celebrations?</h3>
+          <div class="options">
+            <label class="option"><input type="radio" name="q5" value="A"> <span>A) To prevent children from using them during festivities.</span></label>
+            <label class="option"><input type="radio" name="q5" value="B"> <span>B) To stop malevolent spirits from attacking the living with them.</span></label>
+            <label class="option"><input type="radio" name="q5" value="C"> <span>C) To prepare for a traditional cooking competition.</span></label>
+            <label class="option"><input type="radio" name="q5" value="D"> <span>D) To symbolise the end of the harvest season.</span></label>
+          </div>
+        </div>
+
+        <div class="question" data-correct="C">
+          <h3>6. Why might people in Ireland carve vegetables other than pumpkins for Halloween?</h3>
+          <div class="options">
+            <label class="option"><input type="radio" name="q6" value="A"> <span>A) Pumpkins are considered unlucky in Irish culture.</span></label>
+            <label class="option"><input type="radio" name="q6" value="B"> <span>B) Pumpkins were traditionally forbidden during religious celebrations.</span></label>
+            <label class="option"><input type="radio" name="q6" value="C"> <span>C) Pumpkins are not native to Europe, so people have used alternatives such as turnips.</span></label>
+            <label class="option"><input type="radio" name="q6" value="D"> <span>D) Other vegetables are believed to protect people from illness.</span></label>
+          </div>
+        </div>
+
+        <div class="question" data-correct="D">
+          <h3>7. When did Halloween traditions from the United States become popular in Sweden, according to the speaker?</h3>
+          <div class="options">
+            <label class="option"><input type="radio" name="q7" value="A"> <span>A) In the 1950s.</span></label>
+            <label class="option"><input type="radio" name="q7" value="B"> <span>B) In the 1970s.</span></label>
+            <label class="option"><input type="radio" name="q7" value="C"> <span>C) In the 1980s.</span></label>
+            <label class="option"><input type="radio" name="q7" value="D"> <span>D) In the 1990s.</span></label>
+          </div>
+        </div>
+
+        <div class="question" data-correct="A">
+          <h3>8. What were bonfires traditionally believed to do in the UK and Ireland?</h3>
+          <div class="options">
+            <label class="option"><input type="radio" name="q8" value="A"> <span>A) Ward off evil spirits.</span></label>
+            <label class="option"><input type="radio" name="q8" value="B"> <span>B) Help people predict the weather.</span></label>
+            <label class="option"><input type="radio" name="q8" value="C"> <span>C) Guide lost travellers home.</span></label>
+            <label class="option"><input type="radio" name="q8" value="D"> <span>D) Celebrate the end of the winter season.</span></label>
+          </div>
+        </div>
+
+        <div class="question" data-correct="C">
+          <h3>9. What happens during the final stage of Nigeria's Odo Festival?</h3>
+          <div class="options">
+            <label class="option"><input type="radio" name="q9" value="A"> <span>A) Families welcome the deceased back from the grave.</span></label>
+            <label class="option"><input type="radio" name="q9" value="B"> <span>B) Families interact with their deceased relatives for several months.</span></label>
+            <label class="option"><input type="radio" name="q9" value="C"> <span>C) Families say goodbye to their ancestors, who will not return for another two years.</span></label>
+            <label class="option"><input type="radio" name="q9" value="D"> <span>D) Families exchange gifts to celebrate the harvest.</span></label>
+          </div>
+        </div>
+
+        <div class="question" data-correct="D">
+          <h3>10. What might happen to someone who finds a small coin inside a slice of Irish barmbrack?</h3>
+          <div class="options">
+            <label class="option"><input type="radio" name="q10" value="A"> <span>A) They will travel abroad within a year.</span></label>
+            <label class="option"><input type="radio" name="q10" value="B"> <span>B) They will get married before the next Halloween.</span></label>
+            <label class="option"><input type="radio" name="q10" value="C"> <span>C) They will receive good news about their family.</span></label>
+            <label class="option"><input type="radio" name="q10" value="D"> <span>D) They will become wealthy within a year.</span></label>
+          </div>
+        </div>
+      </form>
+
+      <div class="controls">
+        <button type="button" class="primary" id="check1">Check answers</button>
+        <button type="button" class="secondary" id="reset1">Reset</button>
+        <span id="score1"></span>
+      </div>
+    </div>
+
+    <!-- PAGE 2: Vocabulary -->
+    <div class="page" id="page2">
+      <p class="instructions">Can you remember the English equivalents of these words and expressions? Watch the video again and check.</p>
+
+      <form id="form2">
+        <div class="vocab-item" data-answers="a graveyard|graveyard|the graveyard|graveyards">
+          <div class="ru">кладбище</div>
+          <input type="text" placeholder="Type English equivalent…">
+          <div class="feedback"></div>
+        </div>
+
+        <div class="vocab-item" data-answers="the deceased|deceased">
+          <div class="ru">умершие, покойные</div>
+          <input type="text" placeholder="Type English equivalent…">
+          <div class="feedback"></div>
+        </div>
+
+        <div class="vocab-item" data-answers="a lantern|lantern|lanterns">
+          <div class="ru">фонарь</div>
+          <input type="text" placeholder="Type English equivalent…">
+          <div class="feedback"></div>
+        </div>
+
+        <div class="vocab-item" data-answers="prayers|prayer">
+          <div class="ru">молитвы</div>
+          <input type="text" placeholder="Type English equivalent…">
+          <div class="feedback"></div>
+        </div>
+
+        <div class="vocab-item" data-answers="graves|a grave|grave">
+          <div class="ru">могилы</div>
+          <input type="text" placeholder="Type English equivalent…">
+          <div class="feedback"></div>
+        </div>
+
+        <div class="vocab-item" data-answers="malevolent spirits|malevolent spirit">
+          <div class="ru">злые духи</div>
+          <input type="text" placeholder="Type English equivalent…">
+          <div class="feedback"></div>
+        </div>
+
+        <div class="vocab-item" data-answers="to carve pumpkins|carve pumpkins|carving pumpkins">
+          <div class="ru">вырезать узоры на тыквах</div>
+          <input type="text" placeholder="Type English equivalent…">
+          <div class="feedback"></div>
+        </div>
+
+        <div class="vocab-item" data-answers="to light bonfires|light bonfires|lighting bonfires">
+          <div class="ru">разжигать большие костры</div>
+          <input type="text" placeholder="Type English equivalent…">
+          <div class="feedback"></div>
+        </div>
+
+        <div class="vocab-item" data-answers="to honour the dead|to honor the dead|honour the dead|honor the dead">
+          <div class="ru">чтить память умерших</div>
+          <input type="text" placeholder="Type English equivalent…">
+          <div class="feedback"></div>
+        </div>
+
+        <div class="vocab-item" data-answers="ancestors|ancestor">
+          <div class="ru">предки</div>
+          <input type="text" placeholder="Type English equivalent…">
+          <div class="feedback"></div>
+        </div>
+      </form>
+
+      <div class="controls">
+        <button type="button" class="primary" id="check2">Check answers</button>
+        <button type="button" class="secondary" id="reset2">Reset</button>
+        <span id="score2"></span>
+      </div>
+    </div>
+
+    <!-- PAGE 3: Reflection -->
+    <div class="page" id="page3">
+      <div class="reflection-box">
+        <p>Imagine you need to write a comment under this video on YouTube. Choose either of the two questions below, compose a comment answering it and send it to your teacher in DMs before the lesson:</p>
+        <p><strong>A)</strong> Which of these traditions did you like the most and why?</p>
+        <p><strong>B)</strong> What Halloween traditions are present in your country?</p>
+      </div>
+    </div>
+
+    <p class="footer-note">Select or type your answers, then click “Check answers” on each section.</p>
+  </div>
+
+  <div class="modal-overlay" id="scoreModal">
+    <div class="modal">
+      <div class="score-big" id="modalScore"></div>
+      <div class="message" id="modalMessage"></div>
+      <button type="button" id="modalClose">OK</button>
+    </div>
+  </div>
+
+  <script>
+    // Navigation
+    document.querySelectorAll('.nav button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('page' + btn.dataset.page).classList.add('active');
+      });
+    });
+
+    const messagesListening = {
+       0: "😢 Don't give up!",
+       1: "🌱 Keep trying!",
+       2: "💪 Every step counts!",
+       3: "🙂 Keep practising!",
+       4: "👍 Good effort!",
+       5: "😊 You're making progress!",
+       6: "👏 Nice work!",
+       7: "🌟 Well done!",
+       8: "🔥 Great job!",
+       9: "🤩 Excellent work!",
+      10: "🏆 Absolutely fantastic!"
+    };
+
+    const messagesVocab = {
+       0: "🫠 Time to start fresh!",
+       1: "🐣 Every expert starts somewhere!",
+       2: "🪴 Little by little, you’ll improve!",
+       3: "🐢 Slow and steady wins the race!",
+       4: "🧩 You’re putting the pieces together!",
+       5: "🌤️ You’re halfway there!",
+       6: "🦊 You’re getting the hang of it!",
+       7: "🎨 You’re finding your rhythm!",
+       8: "⚡ You’re on a roll!",
+       9: "🦄 You’re shining bright!",
+      10: "👑 You nailed it!"
+    };
+
+    function showScorePopup(score, total, messages) {
+      document.getElementById('modalScore').textContent = `${score} / ${total}`;
+      document.getElementById('modalMessage').textContent = messages[score] || messages[0];
+      document.getElementById('scoreModal').classList.add('show');
+    }
+
+    document.getElementById('modalClose').addEventListener('click', () => {
+      document.getElementById('scoreModal').classList.remove('show');
+    });
+
+    document.getElementById('scoreModal').addEventListener('click', (e) => {
+      if (e.target.id === 'scoreModal') {
+        document.getElementById('scoreModal').classList.remove('show');
+      }
+    });
+
+    // PAGE 1 – Listening
+    document.getElementById('check1').addEventListener('click', () => {
+      let correct = 0;
+      const questions = document.querySelectorAll('#page1 .question');
+      questions.forEach(q => {
+        const ans = q.dataset.correct;
+        const opts = q.querySelectorAll('.option');
+        const selected = q.querySelector('input:checked');
+        opts.forEach(o => o.classList.remove('correct', 'incorrect'));
+        if (selected) {
+          const opt = selected.closest('.option');
+          if (selected.value === ans) {
+            opt.classList.add('correct');
+            correct++;
+          } else {
+            opt.classList.add('incorrect');
+            opts.forEach(o => {
+              if (o.querySelector('input').value === ans) o.classList.add('correct');
+            });
+          }
+        }
+      });
+      document.getElementById('score1').textContent = `Score: ${correct} / ${questions.length}`;
+      showScorePopup(correct, questions.length, messagesListening);
+    });
+
+    document.getElementById('reset1').addEventListener('click', () => {
+      document.getElementById('form1').reset();
+      document.querySelectorAll('#page1 .option').forEach(o => o.classList.remove('correct', 'incorrect'));
+      document.getElementById('score1').textContent = '';
+    });
+
+    // PAGE 2 – Vocabulary
+    function normalize(str) {
+      return str.trim().toLowerCase()
+        .replace(/\s+/g, ' ')
+        .replace(/^to\s+/, '')
+        .replace(/^(a|an|the)\s+/, '');
+    }
+
+    document.getElementById('check2').addEventListener('click', () => {
+      let correct = 0;
+      const items = document.querySelectorAll('#page2 .vocab-item');
+      items.forEach(item => {
+        const input = item.querySelector('input');
+        const feedback = item.querySelector('.feedback');
+        const possible = item.dataset.answers.split('|').map(a => normalize(a));
+        const user = normalize(input.value);
+
+        item.classList.remove('correct', 'incorrect');
+        feedback.className = 'feedback';
+        feedback.textContent = '';
+
+        if (!user) return;
+
+        if (possible.some(p => user === p || user === normalize(p))) {
+          item.classList.add('correct');
+          feedback.classList.add('correct');
+          feedback.textContent = '✓ Correct';
+          correct++;
+        } else {
+          item.classList.add('incorrect');
+          feedback.classList.add('incorrect');
+          feedback.textContent = `✗ Expected: ${item.dataset.answers.split('|')[0]}`;
+        }
+      });
+      document.getElementById('score2').textContent = `Score: ${correct} / ${items.length}`;
+      showScorePopup(correct, items.length, messagesVocab);
+    });
+
+    document.getElementById('reset2').addEventListener('click', () => {
+      document.querySelectorAll('#page2 .vocab-item').forEach(item => {
+        item.querySelector('input').value = '';
+        item.classList.remove('correct', 'incorrect');
+        item.querySelector('.feedback').textContent = '';
+        item.querySelector('.feedback').className = 'feedback';
+      });
+      document.getElementById('score2').textContent = '';
+    });
+  </script>
+</body>
+</html>
